@@ -2,7 +2,11 @@
     Hello Patient
 </h1>
 <div>
-    <h3>
-        {{form.as_p}}
-    </h3>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <h3>
+            {{form.as_p}}
+        </h3>
+        <input type="Submit" value="Submit" name="submit"/>
+    </form>
 </div>
