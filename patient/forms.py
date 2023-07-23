@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from .models import Register_Patient
+from .models import RegisterPatient
 
 class Patient_Form(ModelForm):
     
     class Meta:
-        model = Register_Patient
+        model = RegisterPatient
         fields = '__all__'

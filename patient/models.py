@@ -5,7 +5,7 @@ sex = (
     ("Male","M"),
     ("Female","F"),
 )
-class Register_Patient(models.Model):
+class RegisterPatient(models.Model):
     """Model definition for Register_Patient."""
 
     First_Name = models.CharField(max_length=50)
