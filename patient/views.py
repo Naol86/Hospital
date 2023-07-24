@@ -1,9 +1,24 @@
 from django.shortcuts import redirect, render
-from .forms import Patient_Form
-from .models import RegisterPatient
+from .forms import Patient_Form,Nurse_Form
+from .models import Register_Patient
+from django.db.models import Q
 
 # Create your views here.
-
+def Home(request):
+    
+    if request.GET.get('search') != None :
+        search = request.GET.get('search')
+    else:
+        search = '#'
+    
+    patients = Register_Patient.objects.filter(
+        Q(Full_Name__icontains = search) 
+        )
+    patient_count = patients.count()
+    
+    context = {'patients':patients}
+    
+    return render (request,"home.html",context)
 def RegisterPatient(request):
     form = Patient_Form()
     if request.method == 'POST':
@@ -16,7 +31,9 @@ def RegisterPatient(request):
 
 def Nurse(request):
     
-    patient = RegisterPatient.objects.all()
+    nurse = Nurse_Form()
     
-    context = {'patient' : patient}
+    patients = Register_Patient.objects.all()
+    
+    context = {'patients' : patients , 'nurse':nurse}
     return render(request,'nurse.html',context)

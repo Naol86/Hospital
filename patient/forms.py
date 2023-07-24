@@ -1,8 +1,14 @@
 from django.forms import ModelForm
-from .models import RegisterPatient
+from .models import Register_Patient,Nurse
 
 class Patient_Form(ModelForm):
     
     class Meta:
-        model = RegisterPatient
-        fields = '__all__'
+        model = Register_Patient
+        exclude = ["Full_Name"]
+        
+class Nurse_Form(ModelForm):
+    
+    class Meta:
+        model = Nurse
+        fields = "__all__" 
