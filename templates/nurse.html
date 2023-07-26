@@ -1,6 +1,18 @@
 <h1>
     hello nurses
-    {{nurse.as_p}}
+    <form method="POST" action="{% url 'Nurse' %}">
+        {% csrf_token %}
+        <h3>
+            <!-- <label for="patients">Patient :</label>
+            <select name="patient_list">
+            {% for patient in patients %}
+                <option value="volvo">{{patient}}</option>
+            {% endfor %}
+            </select> -->
+        </h3>
+        {{nurse.as_p}}
+        <input type="submit" value="Submit" />
+    </form>
 </h1>
 {% for patient in patients %}
 <div>

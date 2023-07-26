@@ -1,3 +1,4 @@
+from django import forms
 from django.db import models
 from birthday import BirthdayField,BirthdayManager
 
@@ -22,8 +23,8 @@ class Register_Patient(models.Model):
     Phone_Number = models.CharField(max_length=15)
     Emergency_Phone_Number = models.CharField(max_length=15)
     Birth_Day = models.DateField()
-    
     Created_at = models.DateTimeField(auto_now=True)
+    Nurse_Checked = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['Created_at']
@@ -50,10 +51,10 @@ class Nurse(models.Model):
     """Model definition for Nurse."""
     
     patient = models.ForeignKey(Register_Patient,on_delete=models.PROTECT)
-    status = models.CharField(max_length=500)
+    status = models.TextField(max_length=700)
     doctor = models.ForeignKey(Doctors,on_delete=models.PROTECT)
     
     def __str__(self):
         """Unicode representation of Nurse."""
-        pass
+        return self.patient
 

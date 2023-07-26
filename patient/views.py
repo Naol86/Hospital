@@ -33,7 +33,12 @@ def Nurse(request):
     
     nurse = Nurse_Form()
     
-    patients = Register_Patient.objects.all()
+    if request.method == 'POST':
+        nurse = Nurse_Form(request.POST)
+        if nurse.is_valid():
+            nurse.save()
+            return redirect('Nurse')
+    # patients = Register_Patient.objects.filter(Nurse_Checked=False)
     
-    context = {'patients' : patients , 'nurse':nurse}
+    context = {'nurse':nurse}
     return render(request,'nurse.html',context)
